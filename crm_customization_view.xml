@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-<!-- Adding the fields to crm.lead to the screen -->
        
         <!-- Home Dash Board -->
         <record model="ir.ui.view" id="board_crm_home_form">
@@ -81,10 +80,6 @@
                    <field name="email_sent"/>
                </field>
 
-               <!-- <field name="contact_name" position="attributes">
-                <label for="contact_name"/>
-            </field> -->
-            <!-- <xpath expr="//form//sheet//group//group//div]" position="replace"/> -->
 
                <field name='priority' position='before'>
                    <field name="sales_consultant"/>

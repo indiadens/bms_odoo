@@ -3,7 +3,6 @@ from openerp import  tools, api
 import datetime
 from openerp.exceptions import except_orm, Warning, RedirectWarning
 
-# from openerp import models, fields, api
 class crm_custom_fields(osv.osv):
 	_inherit = "crm.lead"
 	_columns = {

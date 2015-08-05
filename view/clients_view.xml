@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+             
+      <menuitem id="crm_client" name="Clients" sequence="18"/>
+
+      <menuitem id="customer_menu" name="Customers" parent="crm_client" sequence="1"/>
+        <menuitem action="base.action_partner_form" id="                         leobest_customer_view_action"     
+            parent="customer_menu"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+          <menuitem name="Feeds"
+    id="mail.mail_feeds_main"
+    sequence="10"/>
+
+    <!-- Left-side menu: Feeds -->
+        <menuitem id="mail.mail_feeds" name="Messaging" parent="mail.mail_feeds_main" groups="base.group_user" sequence="13" />
+
+        <menuitem id="mail.mail_my_stuff" name="Organizer" parent="mail.mail_feeds_main" sequence="14"/>
+
+         <menuitem id="mail.mail_group_root" parent="mail.mail_feeds_main" sequence="10" name="Feeds"/>
+
+         <record model="mail.group" id="group_all_employees">
+            <field name="name">Feeds</field>
+            <field name="group_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="description">Hey! What's Up!.</field>
+        </record>
+
+
+          </data>
+</openerp>

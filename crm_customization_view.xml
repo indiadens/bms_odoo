@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- Adding the fields to crm.lead to the screen -->
+       
+        <!-- Home Dash Board -->
+        <record model="ir.ui.view" id="board_crm_home_form">
+            <field name="name">Crm Dashboard Form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Crm Dashboard">
+                    <hpaned>
+                        <child1>
+                            <action string="Todays Leads" name="%(crm.crm_case_tree_view_leads)d"
+                                colspan="4" />                          
+                        </child1>
+                        
+                    </hpaned>
+                    <hpaned>
+                        <child1>
+                            <action string="Open Tasks" name="%(crm.crm_case_tree_view_oppor)d"
+                                colspan="3" />                          
+                        </child1>
+                    </hpaned>
+
+                    <hpaned>
+                        <child1>
+                            <action string="Closing This Month" name="%(crm.crm_case_tree_view_oppor)d"
+                                colspan="3" /> 
+                        </child1>
+                        <child4>
+                            <action string="Pipeline by Stage" name="%(crm.crm_case_tree_view_oppor)d"
+                                colspan="10" />                          
+                        </child4>                        
+                    </hpaned>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="crmhome_board">
+                    <field name="name">Home Dashboard</field>
+                    <field name="res_model">board.board</field>
+                    <field name="view_type">form</field>
+                    <field name="view_mode">form</field>
+                    <field name="usage">menu</field>
+                    <field name="view_id" ref="board_crm_home_form" />
+                </record>
+
+        <menuitem id="crmhome_menu" name="Home"
+                    action="crmhome_board" sequence="11"/>
+
+
+        <!--  -->
+         <menuitem id='base.menu_base_partner' name='Leads'/>
+        <menuitem id='base.menu_sales' name='Leads' parent='base.menu_base_partner'/>
+        <!-- <delete id='base.menu_partner_form' model='ir.ui.menu'/> -->
+
+        <menuitem name='Configuration' id='base.menu_base_config' parent='base.menu_base_partner' />
+        <menuitem name='Nationality' id='nationality_obj' parent='base.menu_base_config' />
+
+<!-- Adding the fields to crm.lead to the screen -->
+        
+
+        
+        <record id="crm_custom_form_view" model="ir.ui.view">
+            <field name="name">crm.lead.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="arch" type="xml">
+                <field name='partner_name' position='before'>
+                    <field name="lead_source"/>
+                 </field>
+
+                <field name='user_id' position='attributes'>
+                   <attribute name="string">Lead Owner</attribute>
+               </field>
+
+               <field name='user_id' position='after'>
+                   <field name="email_sent"/>
+               </field>
+
+               <!-- <field name="contact_name" position="attributes">
+                <label for="contact_name"/>
+            </field> -->
+            <!-- <xpath expr="//form//sheet//group//group//div]" position="replace"/> -->
+
+               <field name='priority' position='before'>
+                   <field name="sales_consultant"/>
+                   <field name="booked_by"/>
+                   <field name="organisation"/>
+                   <field name="handling_ofc"/>
+                   <field name="lead_date"/>
+                   <group cols='4'>
+                      <field colspan='1' name="followup_date"/>
+                      <field name="appointment_date"/>
+                   </group>
+                   <group cols='4'>
+                     
+                     <field colspan='1' name="followup_date_time"/>
+                     <field colspan='1' name="appointment_date_time"/>
+                   </group>
+                   <field name="contract_signed_date"/>
+               </field>
+
+
+               <xpath expr="/form[@string='Leads Form']/sheet/notebook/page[@string='Internal Notes']" position='after'>
+                    <page  string="Point Tests">
+                        <group>
+                            <group>
+                                <field name="remarks_age"/>
+                                <field name="eng_ability"/>
+                                <field name="work_exp"/>
+                                <field name="educational_qualification"/>
+                                <field name="aus_employment"/>
+                                <field name="aus_study"/>
+                                <field name="other_factors"/>
+                                <field name="state_sponsorship"/>
+                                <field name="visa_type"/>
+                                <field name="relative_sponsor"/>
+                            </group>
+
+                            <group>
+                                <field name="points_age"/>
+                                <field name="points_eng_ability"/>
+                                <field name="points_overseas_exp"/>
+                                <field name="points_aus_emp"/>
+                                <field name="points_edu_qua"/>
+                                <field name="points_aus_study"/>
+                                <field name="points_oth_factors"/>
+                                <field name="points_state_sponsorship"/>
+                                <field name="total_points"/>
+                                <field name="relative_sponsor_state"/>
+                            </group>
+                        </group>
+                    </page>
+
+                    <page  string="Point Tests for NZ">
+                      <group>
+                        <field name="rem_skill_emp"/>
+                        <field name="rem_emp_offer"/>
+                        <field name="rem_work_exp"/>
+                        <field name="rem_nz_exp"/>
+                        <field name="rem_work_diff"/>
+                        <field name="rem_skill_sort"/>
+                        <field name="rem_recog"/>
+                        <field name="rem_qual"/>
+                        <field name="rem_family"/>
+                        <field name="rem_age"/>
+                        <field name="total_points_nz"/>
+                      </group>
+
+                      <group>
+                        <field name="point_skill_emp"/>
+                        <field name="point_emp_offer"/>
+                        <field name="pints_work_exp"/>
+                        <field name="point_nz_exp"/>
+                        <field name="point_exp_indentified"/>
+                        <field name="point_exp_skillsort"/>
+                        <field name="points_recog_qual"/>
+                        <field name="points_qual"/>
+                        <field name="points_family"/>
+                        <field name="points_agenz"/>
+                      </group>
+                    </page>
+
+
+                    <!-- Notes for point test -->
+
+                    <page string="Notes for Point Test">
+                        <group>
+                            <group>
+                                      <separator colspan='5'/>
+                                      <field name="qualification"/>
+                                      <field name="english_notes"/>
+                                      <field name="work_exp_notes"/>
+                                      <field name="state_sponsorship_notes"/>
+
+                                      <field name="qualification_notes"/>
+                                      <field name="work_experience"/>
+                                      <field name="other_factors_notes"/>
+                                      
+                            </group>
+
+                            <group String='Visa Assessment Details'>
+                                      <separator colspan='5'/>
+                                      <field name="anzsco_code"/>
+                                      <field name="migrate_to"/>
+                                      <field name="anzsco_desc"/>
+                                      <field name="assessing_auth"/>
+                                      
+                                      
+                            </group>
+                        </group>
+                    </page>
+
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="action_clients_form" model="ir.actions.act_window">
+            <field name="name">Clients</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_customer":1}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a customer; discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+
+        <!-- <delete model="ir.ui.menu" id="base.menu_partner_form"/> -->
+
+        <menuitem id="client_form" parent="base.menu_sales" action="action_clients_form" sequence="2"/>
+
+
+        <record id="client_custom_form_view" model="ir.ui.view">
+            <field name="name">client.new.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="/form[@string='Partners']/sheet/group/group/field[@name='phone']" position='before'>
+                        <field name="dob"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="visa_type"/>
+                        <field name="nationality"/>
+                        <field name="resume"/>
+                    <!-- <field name="lead_source"/> -->
+                    </xpath>
+
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+             
+      <menuitem id="crm_activities" name="Activities" sequence="20"/>
+
+      <menuitem id="mail.mail_my_stuff" name="Events" parent="crm_activities" sequence="1"/>
+
+
+      <menuitem name="Phone Calls" id="crm.menu_crm_case_phone"
+        groups="base.group_sale_salesman"
+        parent="crm_activities" sequence="4" />
+
+      <menuitem name="Logged Calls" id="crm.menu_crm_case_phone_inbound"
+        parent="crm.menu_crm_case_phone"
+        action="crm.crm_case_categ_phone_incoming0" />
+
+
+    </data>
+</openerp>
